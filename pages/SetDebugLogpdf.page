@@ -1,0 +1,11 @@
+<apex:page controller="downLoadLogs" contentType="text/plain/#Debug Logs.txt" action="{!downLoadlogsBYClick}" sidebar="false" cache="flase" > 
+
+  =================================Start of Debug Log========================
+ 
+  {!debugLogString}
+  
+  =================================End of Debug Log==========================
+ 
+  
+  
+</apex:page>

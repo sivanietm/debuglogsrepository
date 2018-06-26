@@ -1,0 +1,331 @@
+<apex:page controller="SetDebugLogsClass" doctype="html-5.0" id="thePage"> 
+
+<apex:form >
+ 
+  <apex:pageBlock rendered="{!showdebugInput}" title="Debug Log Page">
+  <apex:pageMessages />
+
+  <apex:pageblockbuttons >
+  <apex:commandButton value="Save"  action="{!setDebugLogs}"  />
+  <apex:commandButton value="Cancel"  action="{!setDebugLogs}"  />
+  </apex:pageblockbuttons>
+  <div>
+  <table border="0" cellpadding="12" cellspacing="12" >
+  <tbody>
+  
+  
+  <tr>
+  <th scope="row">
+  <label> Select Organaization </label>
+  </th>
+  <th>
+  
+   <apex:outputPanel >
+               <div class="requiredInput">
+                    <div class="requiredBlock"></div> 
+   <apex:selectList value="{!selectedOrg}" size="1" >
+  <apex:selectOptions value="{!Orgs}"/>
+        </apex:selectList>
+   </div> 
+            </apex:outputPanel>
+
+  </th>
+  </tr>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <tr>
+  <th scope="row">
+  <label> Traced User Id </label>
+  </th>
+  <th>
+  
+   <apex:outputPanel >
+                <div class="requiredInput">
+                    <div class="requiredBlock"></div>
+   <apex:input type="text" value="{!userId}" required="true"/>
+   </div>
+            </apex:outputPanel>
+
+  </th>
+  </tr>
+ <!-- </tbody> 
+  </table>
+  <table border="0" cellpadding="12" cellspacing="12" >
+  <tbody> -->
+  <tr>
+  <th scope="row">
+  <label> Start Time </label>
+  </th>
+  <th>
+  <apex:outputPanel >
+                <div class="requiredInput">
+                    <div class="requiredBlock"></div>
+ <!-- <apex:input type="datetime-local" value="{!startTime}" required="true"/> -->
+  <apex:inputfield value="{!deBugLog.Start_Date_Time__c}"/> 
+  </div>
+            </apex:outputPanel>
+  </th>
+  </tr>
+ <!-- </tbody> 
+  </table>
+  <table border="0" cellpadding="12" cellspacing="12" >
+  <tbody> -->
+  <tr>
+  <th scope="row">
+  <label> Expiration Time </label>
+  </th>
+  <th>
+  <apex:outputPanel >
+                <div class="requiredInput">
+                    <div class="requiredBlock"></div>
+  <!--<apex:input type="datetime-local" value="{!endTime}"  required="true"/> -->
+ <apex:inputfield value="{!deBugLog.testNamespaceSi__End_Date_Time__c }"/> 
+  </div>
+            </apex:outputPanel>
+  </th>
+  </tr>
+ <!-- <tr>
+  <th scope="row">
+  <label> Debug Level </label>
+  </th>
+  <th>
+  <apex:outputPanel >
+                <div class="requiredInput">
+                    <div class="requiredBlock"></div>
+  <apex:input type="text" value="{!debugLevel}" required="true"/>
+  </div>
+            </apex:outputPanel>
+  </th>
+  </tr> -->
+  <tr>
+  <th scope="row">
+  <label> Database </label>
+  </th>
+  <th>
+  
+  <apex:selectList value="{!dBValue}" size="1">
+  <apex:selectOptions value="{!ItemsdB}"/>
+        </apex:selectList>
+  
+         
+  </th>
+ <!-- </tr> 
+  <tr> -->
+  <th scope="row">
+  <label> Workflow </label>
+  </th>
+  <th>
+  
+  <apex:selectList value="{!wFValue}" size="1">
+  <apex:selectOptions value="{!ItemsWF}"/>
+        </apex:selectList>
+  
+         
+  </th>
+ <!-- </tr>
+  
+  <tr> -->
+  <th scope="row">
+  <label> Validation </label>
+  </th>
+  <th>
+  
+  <apex:selectList value="{!validValue}" size="1">
+  <apex:selectOptions value="{!ItemsValid}"/>
+        </apex:selectList>
+  
+         
+  </th>
+ </tr>
+  
+  <tr>  
+  <th scope="row">
+  <label> Callouts </label>
+  </th>
+  <th>
+  
+  <apex:selectList value="{!callValue}" size="1">
+  <apex:selectOptions value="{!ItemscallOut}"/>
+        </apex:selectList>
+  
+         
+  </th>
+ <!-- </tr>
+  <tr> -->
+  <th scope="row">
+  <label> Apex Code </label>
+  </th>
+  <th>
+  
+  <apex:selectList value="{!apexValue}" size="1">
+  <apex:selectOptions value="{!items}"/>
+        </apex:selectList>
+  
+         
+  </th>
+ <!-- </tr>
+    <tr>  --> 
+  <th scope="row">
+  <label> Apex Profiling </label>
+  </th>
+  <th>
+  
+  <apex:selectList value="{!profilValue}" size="1">
+  <apex:selectOptions value="{!ItemsapexProfile}"/>
+        </apex:selectList>
+  
+         
+  </th>
+  </tr>
+  
+  <tr>  
+  <th scope="row">
+  <label> Visualforce </label>
+  </th>
+  <th>
+  
+  <apex:selectList value="{!vfValue}" size="1">
+  <apex:selectOptions value="{!ItemsvfPage}"/>
+        </apex:selectList>
+  
+         
+  </th>
+  <!--</tr>
+  
+  <tr>  -->
+  <th scope="row">
+  <label> System </label>
+  </th>
+  <th>
+  
+  <apex:selectList value="{!sysValue}" size="1">
+  <apex:selectOptions value="{!ItemsSystem}"/>
+        </apex:selectList>
+  
+         
+  </th>
+ <!-- </tr>
+   <tr>  -->
+  <th scope="row">
+  <label> Wave </label>
+  </th>
+  <th>
+  
+  <apex:selectList value="{!waveValue}" size="1" >
+  <apex:selectOptions value="{!ItemsWave}" />
+        </apex:selectList>
+  
+         
+  </th>
+  </tr>
+  
+  </tbody> 
+  </table>
+
+  
+  
+  </div>
+
+   </apex:pageBlock>
+     <apex:pageBlock rendered="{!alReadyTraced}">
+  <span>
+  This User is already being traced.Below are the details for the Debug Trace.Please perform the action you need and click on Refresh Button"
+  </span>
+  </apex:pageBlock>
+  
+  
+   <apex:pageBlock rendered="{!newlyCreated}">
+  <span>
+  New Debug Trace is Created for this user with below Details.Please perform the operation you wanted and click refresh button to get Debug Logs
+  </span>
+  </apex:pageBlock>
+   <apex:pageBlock rendered="{!traceList.size>0}" title="User Trace Flag" id="traceFlagBlock">
+   <apex:pageBlockTable value="{!traceList}" var="item" >
+       
+       <apex:column headerValue="Action">
+       <apex:CommandButton value="{!item.editString}" action="{!EditTraceFlag}" >
+       <apex:param name="traceFlagId" value="{!item.traceFlagId}" />
+       </apex:commandButton>
+       </apex:column>
+        <apex:column >
+       <apex:CommandButton value="{!item.delString}" action="{!delTraceFlag}" rerender="traceFlagBlock"  oncomplete="window.reload();"   >
+       <apex:param name="traceFlagId1" value="{!item.traceFlagId}" />
+       </apex:commandButton>
+       </apex:column>
+       <apex:column value="{!item.UserName}" headerValue="UserId"/>
+       <apex:column value="{!item.logType}" headerValue="Log Type"/>
+       <apex:column value="{!item.StartDate}" headerValue="Start Date"/>
+       
+       <apex:column value="{!item.ExpirationDate}" headerValue="Expiry Date"/>
+       <apex:column value="{!item.DebugLevelName}" headerValue="Debug Level Id"/>
+
+       
+       
+       </apex:pageBlockTable>
+       <apex:pageblockButtons >
+       <apex:CommandButton value="Refresh"   action="{!retreiveApexLogs}" />
+       
+       </apex:pageblockButtons>
+   </apex:pageBlock>
+   
+   <apex:pageBlock rendered="{!showDebugLogDeleteMsg}" id="deleteMsgBlock">
+   
+   Trace Flag is Deleted Successfully
+   
+   </apex:pageBlock>
+   
+   
+   
+   <apex:pageBlock rendered="{!apexLogList.size>0}" title="Debug Logs" id="pBlock">
+   <apex:pageblockButtons >
+   <apex:commandButton value="Delete All" action="{!deleteAllApexLogs}"/>
+   </apex:pageblockButtons>
+   <apex:pageBlockTable value="{!apexLogList}" var="item">
+   
+       <apex:column id="col" headerValue="Action">
+       
+       <apex:commandButton value="{!item.downLoadString}" action="{!downloadLog}" rerender="pBlock" >
+                           <apex:param name="apexLogId" value="{!item.logId}" assignTo="{!apexLogid}"/>
+            </apex:commandButton>              
+
+       </apex:column>
+       
+       <!--<apex:column >
+       <a id="theLink" name="theLink" href="https://www.salesforce.com">www.salesforce.com</a>
+       </apex:column>-->
+       <apex:column value="{!item.Application}" headerValue="Application"/>
+       <apex:column value="{!item.DurationMilliseconds}" headerValue="Duration"/>
+       <apex:column value="{!item.Location}" headerValue="Location"/>
+       <apex:column value="{!item.LogLength}" headerValue="LogLength"/>
+       <apex:column value="{!item.LogUserId}" headerValue="LogUserId"/>
+       
+       <apex:column value="{!item.Operation}" headerValue="Operation"/>
+       <apex:column value="{!item.Request}" headerValue="Request"/>
+       
+       <apex:column value="{!item.StartTime}" headerValue="StartTime"/>
+       <apex:column value="{!item.Status}" headerValue="Status"/>
+
+       
+       
+       </apex:pageBlockTable>
+       </apex:pageBlock>
+  
+
+ 
+  </apex:form>
+  
+  
+</apex:page>
